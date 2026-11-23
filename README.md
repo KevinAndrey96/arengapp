@@ -6,13 +6,13 @@
 ![MariaDB](https://img.shields.io/badge/MariaDB-10.11-003545?style=for-the-badge&logo=mariadb&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
-![Audiencia](https://img.shields.io/badge/Audiencia-10.000%2B_Usuarios_Activos-brightgreen?style=for-the-badge&logo=google-analytics&logoColor=white)
-![Alcance](https://img.shields.io/badge/Alcance-Viral_Nacional-FF4500?style=for-the-badge)
+![Pico Historico](https://img.shields.io/badge/Pico_Historico-10.000%2B_Usuarios-brightgreen?style=for-the-badge&logo=google-analytics&logoColor=white)
+![Estado](https://img.shields.io/badge/Estado-Archivo_Historico_Open_Source-blue?style=for-the-badge)
 ![Contexto](https://img.shields.io/badge/Contexto-Estallido_Social_Colombia-FCD116?style=for-the-badge&labelColor=003893&color=CE1126)
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
 <p align="center">
-  <strong>Plataforma web viral de streaming y archivo sonoro cultural creada durante las movilizaciones ciudadanas en Colombia. Llego a mas de 10.000 usuarios activos simultaneos, preservando la memoria historica y las letras de 42 arengas y cantos populares.</strong>
+  <strong>Archivo sonoro cultural y reproductor web desarrollado durante las movilizaciones ciudadanas en Colombia. Alcanzo un pico historico de mas de 10.000 usuarios simultaneos en produccion y hoy se preserva como caso de estudio de alta concurrencia y memoria historica de 42 arengas populares.</strong>
 </p>
 
 </div>
@@ -23,16 +23,18 @@
 
 **ArengApp** nacio en el contexto del **Estallido Social y Paro Nacional en Colombia (2019-2021)** como una iniciativa digital ciudadana para unificar, documentar y facilitar la difusion de los cantos populares y arengas entonadas en las calles por estudiantes, colectivos feministas y la ciudadania en general.
 
-En medio de las marchas multitudinarias en ciudades como Bogota, Medellin y Cali, la plataforma se difundio viralmente en redes sociales (Twitter/X, WhatsApp, Instagram), alcanzando una audiencia comprobada de **mas de 10.000 usuarios activos**. ArengApp permitio a miles de manifestantes en tiempo real consultar las letras, escuchar las melodias y sincronizar los cantos colectivos directamente desde sus telefonos moviles con latencia minima y maximo rendimiento.
+En medio de las marchas multitudinarias en ciudades como Bogota, Medellin y Cali, la plataforma se difundio de forma organica y viral en redes sociales (Twitter/X, WhatsApp, Instagram), alcanzando un **pico historico de mas de 10.000 personas conectadas simultaneamente** consumiendo audio y letras en vivo desde sus dispositivos moviles.
+
+Cumplido su ciclo operativo durante las movilizaciones ciudadanas, hoy ArengApp se mantiene y expone como un **archivo historico sonoro y caso de estudio de codigo abierto**, demostrando como una arquitectura web ligera y optimizada puede absorber picos masivos de concurrencia viral con cero costos de infraestructura y sin degradacion de servicio.
 
 ---
 
-## 🌟 Metricas de Impacto & Rendimiento
+## 🌟 Metricas Historicas de Impacto & Rendimiento
 
-- **Audiencia en Produccion:** Mas de **10.000 usuarios activos** recurrentes durante los picos de movilizacion social.
-- **Tasa de Concurrencia:** Miles de peticiones de audio concurrentes atendidas sin caidas ni degradacion de servicio gracias a una arquitectura optimizada y ligera.
-- **Acervo Documental:** 42 arengas y cantos populares grabados, catalogados y clasificados tematicamente con sus respectivas letras transcritas.
-- **Adopcion Comunitaria:** Utilizada como herramienta de formacion cultural, memoria viva y sincronizacion sonora en asambleas estudiantiles y colectivos sociales.
+- **Pico Historico de Audiencia:** Mas de **10.000 usuarios concurrentes** conectados durante las jornadas de mayor afluencia del paro nacional.
+- **Rendimiento bajo Alta Concurrencia:** Miles de solicitudes de streaming de audio simultaneas atendidas sin caidas gracias a una implementacion minimalista y libre de sobrecargas de frameworks pesados.
+- **Estado Actual:** Preservado como repositorio publico de memoria historica y plantilla de reproductor multimedia open source.
+- **Acervo Documental:** 42 arengas populares grabadas, catalogadas y clasificadas tematicamente con transcripcion completa de sus letras.
 
 ---
 
