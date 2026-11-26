@@ -1,61 +1,9 @@
 services:
   app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: arengapp-app
-    restart: unless-stopped
-    ports:
-      - "${APP_PORT:-8096}:80"
+    build: .
+    image: arengapp:local
     environment:
-      DB_HOST: arengapp-db
-      DB_PORT: 3306
-      DB_DATABASE: ${DB_DATABASE:-arengapp_bd}
-      DB_USERNAME: ${DB_USERNAME:-arengapp_admin}
-      DB_PASSWORD: ${DB_PASSWORD:-arengapp_secret}
-    depends_on:
-      - db
-    volumes:
-      - .:/var/www/html
-    networks:
-      - arengapp-net
-
-  db:
-    image: mariadb:10.11
-    container_name: arengapp-db
-    restart: unless-stopped
+      APP_URL: http://localhost:8080
     ports:
-      - "${DB_PORT:-3313}:3306"
-    environment:
-      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-root_secret}
-      MYSQL_DATABASE: ${DB_DATABASE:-arengapp_bd}
-      MYSQL_USER: ${DB_USERNAME:-arengapp_admin}
-      MYSQL_PASSWORD: ${DB_PASSWORD:-arengapp_secret}
-    volumes:
-      - arengapp_data:/var/lib/mysql
-      - ./arengapp_bd.sql:/docker-entrypoint-initdb.d/init.sql:ro
-    networks:
-      - arengapp-net
-
-  pma:
-    image: phpmyadmin:latest
-    container_name: arengapp-pma
+      - "8080:8080"
     restart: unless-stopped
-    ports:
-      - "${PMA_PORT:-8097}:80"
-    environment:
-      PMA_HOST: arengapp-db
-      PMA_PORT: 3306
-      PMA_ARBITRARY: 1
-    depends_on:
-      - db
-    networks:
-      - arengapp-net
-
-volumes:
-  arengapp_data:
-    driver: local
-
-networks:
-  arengapp-net:
-    driver: bridge

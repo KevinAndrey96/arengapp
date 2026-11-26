@@ -1,149 +1,117 @@
-# ArengApp: Voces de Resistencia y Archivo Sonoro Popular
+# ArengApp: archivo sonoro de las arengas del paro nacional en Colombia
 
-<div align="center">
+[![CI](https://github.com/KevinAndrey96/php-arengapp-protest-audio-archive/actions/workflows/ci.yml/badge.svg)](https://github.com/KevinAndrey96/php-arengapp-protest-audio-archive/actions/workflows/ci.yml)
+![PHP](https://img.shields.io/badge/PHP-8.3%20%7C%208.4%20%7C%208.5-777BB4?logo=php&logoColor=white)
+![PHPStan](https://img.shields.io/badge/PHPStan-nivel%20max-2a6fd6)
+![Docker](https://img.shields.io/badge/Docker-Apache%20sin%20root-2496ED?logo=docker&logoColor=white)
+[![Licencia MIT](https://img.shields.io/badge/licencia-MIT-green)](LICENSE)
 
-![PHP](https://img.shields.io/badge/PHP-8.1-777BB4?style=for-the-badge&logo=php&logoColor=white)
-![MariaDB](https://img.shields.io/badge/MariaDB-10.11-003545?style=for-the-badge&logo=mariadb&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?style=for-the-badge&logo=docker&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
-![Pico Historico](https://img.shields.io/badge/Pico_Historico-10.000%2B_Usuarios-brightgreen?style=for-the-badge&logo=google-analytics&logoColor=white)
-![Estado](https://img.shields.io/badge/Estado-Archivo_Historico_Open_Source-blue?style=for-the-badge)
-![Contexto](https://img.shields.io/badge/Contexto-Estallido_Social_Colombia-FCD116?style=for-the-badge&labelColor=003893&color=CE1126)
-![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
+Archivo y reproductor web de **42 arengas** grabadas en las calles durante el paro nacional y las movilizaciones sociales de Colombia entre 2019 y 2021: cantos del paro nacional, del movimiento estudiantil y del movimiento feminista, con su letra cuando se conoce.
 
-<p align="center">
-  <strong>Archivo sonoro cultural y reproductor web desarrollado durante las movilizaciones ciudadanas en Colombia. Alcanzo un pico historico de mas de 10.000 usuarios simultaneos en produccion y hoy se preserva como caso de estudio de alta concurrencia y memoria historica de 42 arengas populares.</strong>
-</p>
+ArengApp nació durante el paro nacional de 2019 para que cualquiera pudiera escuchar y aprender las arengas desde el celular. Se difundió por WhatsApp y redes sociales y llegó a tener más de 10.000 personas conectadas al mismo tiempo. Hoy se conserva como archivo de memoria histórica.
 
-</div>
+## Contenido
 
----
+- [Qué ofrece](#qué-ofrece)
+- [Arquitectura](#arquitectura)
+- [Ejecutar en local](#ejecutar-en-local)
+- [Pruebas y calidad](#pruebas-y-calidad)
+- [Despliegue](#despliegue)
+- [Contribuir con letras](#contribuir-con-letras)
+- [Modernización 2026](#modernización-2026)
+- [Licencia](#licencia)
 
-## 📌 Descripcion del Proyecto & Contexto Historico
+## Qué ofrece
 
-**ArengApp** nacio en el contexto del **Estallido Social y Paro Nacional en Colombia (2019-2021)** como una iniciativa digital ciudadana para unificar, documentar y facilitar la difusion de los cantos populares y arengas entonadas en las calles por estudiantes, colectivos feministas y la ciudadania en general.
+- **Una página por arenga** (`/arengas/duque-chao`, `/arengas/viva-la-u`...) con su audio, letra, URL canónica, etiquetas Open Graph y datos estructurados `MusicRecording` de schema.org, para que cada canto aparezca por sí mismo en buscadores y al compartirlo.
+- **Reproductor continuo:** al terminar una arenga suena la siguiente de la lista filtrada; anterior y siguiente también funcionan desde la pantalla de bloqueo del celular (Media Session API).
+- **Filtros por movimiento y búsqueda** que ignora tildes ("educacion" encuentra "La educación es mía").
+- **Funciona sin JavaScript:** cada arenga es un enlace a su página con un reproductor nativo; el script solo mejora la experiencia (cambio de pista sin recargar y URL sincronizada).
+- **Privacidad real:** sin cookies, analítica, publicidad ni recursos de terceros. Todo se sirve desde el mismo origen, con una política CSP estricta (`default-src 'self'`).
+- **Audio listo para celulares:** Apache atiende solicitudes por rangos (`206 Partial Content`) para adelantar el audio, con caché de 7 días y archivos CSS/JS versionados por hash.
+- **Mapa del sitio y robots** generados con la URL pública configurada, y redirecciones 301 desde las direcciones antiguas (`/index.php`, `/privacidad.php`).
 
-En medio de las marchas multitudinarias en ciudades como Bogota, Medellin y Cali, la plataforma se difundio de forma organica y viral en redes sociales (Twitter/X, WhatsApp, Instagram), alcanzando un **pico historico de mas de 10.000 personas conectadas simultaneamente** consumiendo audio y letras en vivo desde sus dispositivos moviles.
+## Arquitectura
 
-Cumplido su ciclo operativo durante las movilizaciones ciudadanas, hoy ArengApp se mantiene y expone como un **archivo historico sonoro y caso de estudio de codigo abierto**, demostrando como una arquitectura web ligera y optimizada puede absorber picos masivos de concurrencia viral con cero costos de infraestructura y sin degradacion de servicio.
+PHP 8.3+ sin framework, organizado por capas con dependencias hacia adentro:
 
----
-
-## 🌟 Metricas Historicas de Impacto & Rendimiento
-
-- **Pico Historico de Audiencia:** Mas de **10.000 usuarios concurrentes** conectados durante las jornadas de mayor afluencia del paro nacional.
-- **Rendimiento bajo Alta Concurrencia:** Miles de solicitudes de streaming de audio simultaneas atendidas sin caidas gracias a una implementacion minimalista y libre de sobrecargas de frameworks pesados.
-- **Estado Actual:** Preservado como repositorio publico de memoria historica y plantilla de reproductor multimedia open source.
-- **Acervo Documental:** 42 arengas populares grabadas, catalogadas y clasificadas tematicamente con transcripcion completa de sus letras.
-
----
-
-## 🚀 Caracteristicas Principales
-
-- **Reproductor de Audio Dual:**
-  - **Mini-Player Superior:** Control permanente de reproduccion (play/pause, pista anterior, siguiente y caratula por categoria).
-  - **Panel Desplegable Lateral:** Interfaz extendida con barra de desplazamiento temporal (scrubber interactivo), selector de categorias y busqueda en tiempo real.
-- **Catalogo Categorizado:**
-  - **Nacional:** Cantos del paro civico y protestas ciudadanas transversales (*Duque Chao!*, *A parar para avanzar*, *El pueblo*, *Hay que ver las cosas que pasan*, *Represion*).
-  - **Estudiantes:** Arengas del movimiento universitario y defensa de la educacion publica (*Viva la U*, *Soy Estudiante*, *La Batuta*, *Taki Taki*, *Poropopo*, *Presupuesto*).
-  - **Feministas:** Himnos y consignas de colectivos de mujeres y equidad de genero (*Libres o muertas*, *Arroz con leche*, *Don Federico*, *Hoy peleamos*, *Si el papa fuera mujer*).
-- **Visor de Letras y Contexto:** Modal interactivo para consultar la letra detallada de cada arenga y su significado historico.
-- **Filtros Dinamicos en el Cliente:** Filtrado instantaneo por texto o por categoria tematica sin recargar la pagina.
-- **Resiliencia Operativa:** Capa de datos desacoplada en PDO con mecanismo de fallback en memoria: la aplicacion reproduce todo el catalogo tanto con base de datos MariaDB activa como de manera autonoma.
-- **Despliegue Llave en Mano:** Stack completo orquestado con Docker Compose (PHP Apache + MariaDB + phpMyAdmin).
-
----
-
-## 🛠️ Arquitectura y Tecnologias
+| Capa | Ubicación | Responsabilidad |
+| :--- | :--- | :--- |
+| Dominio | `src/Domain` | `Arenga` (valida slug, título, duración y letra), `Category` y la interfaz `ArengaCatalog`. |
+| Infraestructura | `src/Infrastructure` | `JsonArengaCatalog`: lee y valida `data/arengas.json`, con errores claros si el archivo está mal formado. |
+| HTTP | `src/Http` | `App` enruta, aplica cabeceras de seguridad y convierte cualquier falla en una página de error 500 sin filtrar detalles. |
+| Vista | `src/View`, `templates/` | Plantillas PHP que escapan todo el contenido, JSON seguro para incrustar y metadatos SEO por página. |
 
 ```text
-Frontend:     HTML5 Semantico · CSS3 Fluido (Animaciones Wave) · JavaScript ES6+
-Animaciones:  GSAP (TweenMax 1.19 / TimelineMax) · jQuery
-Backend:      PHP 8.1 Apache · PDO MySQL (Prepared Statements & Fallback)
-Base Datos:   MariaDB 10.11 / MySQL 8.0 (arengapp_bd)
-Contenedores: Docker · Docker Compose
+.
+├── data/arengas.json         catálogo: fuente única de títulos, categorías, duraciones y letras
+├── public/
+│   ├── index.php             controlador frontal
+│   ├── audio/                42 grabaciones MP3
+│   └── assets/               CSS, JavaScript sin dependencias, portadas e ícono
+├── src/                      dominio, infraestructura, HTTP y vista
+├── templates/                páginas y layout
+├── tests/                    unitarias, HTTP e integridad del archivo
+├── docker/apache.conf        Apache en el puerto 8080, sin listado de directorios
+└── Dockerfile                imagen de producción sin root con OPcache
 ```
 
----
+| Ruta | Contenido |
+| :--- | :--- |
+| `/` | Catálogo completo con reproductor |
+| `/arengas/{slug}` | Página de una arenga con audio y letra |
+| `/privacidad` | Política de privacidad |
+| `/sitemap.xml`, `/robots.txt` | Indexación para buscadores |
 
-## 📦 Estructura del Repositorio
+## Ejecutar en local
 
-```text
-arengapp/
-├── Covers/                 # Portadas graficas por categoria (Nacional, Estudiantes, Feministas)
-├── Songs/                  # 42 archivos de audio en formato MP3
-├── Tools/
-│   └── PDO.php             # Capa de conexion a MariaDB con variables de entorno y fallback
-├── arengapp_bd.sql         # Volcado SQL oficial de la tabla Songs y las 42 arengas
-├── docker-compose.yml      # Orquestacion de contenedores (App :8096, DB :3313, PMA :8097)
-├── Dockerfile              # Imagen PHP 8.1 Apache con extensiones PDO MySQL
-├── index.php               # Portal principal y reproductor interactivo
-├── privacidad.php          # Politicas de privacidad y terminos de uso
-├── script.js               # Controladores de animacion GSAP y transiciones de pantalla
-├── style.css               # Estilos visuales, ondas animadas y diseno responsive
-└── README.md
-```
-
----
-
-## ⚙️ Puesta en Marcha con Docker Compose
-
-La forma mas rapida y recomendada para ejecutar ArengApp en local:
-
-### 1. Clonar el repositorio
-```bash
-git clone https://github.com/KevinAndrey96/arengapp.git
-cd arengapp
-```
-
-### 2. Iniciar los servicios
-```bash
-docker compose up -d --build
-```
-
-### 3. Acceder a los servicios
-- **Reproductor Web ArengApp:** [http://localhost:8096](http://localhost:8096)
-- **phpMyAdmin:** [http://localhost:8097](http://localhost:8097) (Servidor: `arengapp-db`, Usuario: `arengapp_admin`, Password: `arengapp_secret`)
-- **MariaDB Directo:** `localhost:3313`
-
----
-
-## 💻 Ejecucion Local (Sin Docker)
-
-Si prefieres usar un servidor PHP local:
+Con Docker:
 
 ```bash
-# Iniciar servidor embebido de PHP
-php -S localhost:8000
-
-# Abrir en el navegador
-open http://localhost:8000
+docker compose up --build
 ```
 
-> **Nota:** Si no configuras una base de datos MySQL, ArengApp utilizara automaticamente el catalogo de respaldo integrado, permitiendo reproducir todo el audio sin configuracion previa.
+El sitio queda en http://localhost:8080. La variable `APP_URL` define la URL pública que usan las etiquetas canónicas, Open Graph y el mapa del sitio.
 
----
+Sin Docker (PHP 8.3 o superior y Composer):
 
-## 📊 Inventario de Arengas Documentadas
+```bash
+composer install
+APP_URL=http://localhost:8000 php -S localhost:8000 -t public public/index.php
+```
 
-| Categoria | Total Pistas | Ejemplos Destacados |
-| :--- | :---: | :--- |
-| **Nacional** | 17 | *Duque Chao!*, *A parar para avanzar*, *Hay que ver las cosas*, *El pueblo*, *Represion* |
-| **Estudiantes** | 15 | *Soy Estudiante*, *Viva la U*, *La Batuta*, *Taki Taki*, *Poropopo*, *Presupuesto* |
-| **Feministas** | 10 | *Libres o muertas*, *Arroz con leche*, *Don Federico*, *Hoy peleamos*, *Si el papa fuera mujer* |
+## Pruebas y calidad
 
----
+```bash
+composer check   # PHP-CS-Fixer (PER-CS), PHPStan nivel max con reglas estrictas y PHPUnit
+```
 
-## 📄 Licencia
+- **Unitarias:** reglas de `Arenga` (slugs, duraciones ISO 8601, resúmenes) y validación del catálogo JSON ante archivos dañados, duplicados o categorías desconocidas.
+- **HTTP:** cada ruta, códigos 301, 404 y 405, cabeceras de seguridad, escape de contenido malicioso, mapa del sitio y página de error.
+- **Integridad del archivo:** las 42 arengas tienen su grabación, no hay grabaciones huérfanas, cada categoría tiene portada y los títulos no se repiten.
+- **CI:** PHP 8.3, 8.4 y 8.5, y una prueba de humo sobre la imagen Docker (rutas, sitemap, CSP, solicitudes por rangos y usuario sin privilegios).
 
-Este proyecto esta bajo la Licencia MIT. Consulta el archivo `LICENSE` para mas detalles.
+## Despliegue
 
----
+La imagen Docker es autosuficiente: `docker build -t arengapp .` y `docker run -p 8080:8080 -e APP_URL=https://tu-dominio arengapp`. En un hosting PHP tradicional basta con apuntar la raíz del sitio a `public/` y enviar a `index.php` toda ruta que no sea un archivo, como hace `docker/apache.conf`.
 
-## 👨‍💻 Autor
+## Contribuir con letras
 
-**Kevin Andrey Herrera Silva**  
-*Senior Backend Engineer & Software Architect*  
-Bogota, Colombia  
-- [GitHub](https://github.com/KevinAndrey96)  
-- [LinkedIn](https://www.linkedin.com/in/kevinandrey96/)  
+Muchas arengas todavía no tienen letra. Si conoces alguna, usa el botón **"¿La conoces? Envíala"** de su página o abre un reporte con la plantilla [Enviar la letra de una arenga](https://github.com/KevinAndrey96/php-arengapp-protest-audio-archive/issues/new?template=letra.yml). Las letras se agregan en `data/arengas.json`, una línea por verso.
+
+## Modernización 2026
+
+La versión original (2019) era una sola página PHP con jQuery y GSAP desde CDN, el catálogo duplicado entre el código y una base de datos MySQL, Google Analytics y AdSense. En 2026 se reescribió:
+
+- El catálogo vive en un solo archivo JSON validado, sin base de datos ni phpMyAdmin expuesto.
+- Cada arenga tiene su propia página indexable, en lugar de una única página sin contenido para buscadores.
+- Se retiraron la analítica, la publicidad y todas las dependencias externas del navegador.
+- Se corrigieron tildes y signos en títulos y letras, y los archivos de audio pasaron a nombres legibles sin caracteres especiales.
+- Cuatro grabaciones tenían minutos de silencio al final (`la-batuta` duraba 5:18 para 10 segundos de audio); se recortaron sin recodificar, y ahora el reproductor continuo pasa de una arenga a otra sin esperas.
+- Pruebas, análisis estático, imagen Docker sin root y CI.
+
+## Licencia
+
+El código se publica bajo la [licencia MIT](LICENSE). Las grabaciones y portadas se comparten como archivo de memoria histórica de las movilizaciones; las arengas son cantos populares de autoría colectiva.
+
+Desarrollado por **Kevin Andrey Herrera Silva** ([@KevinAndrey96](https://github.com/KevinAndrey96), [LinkedIn](https://www.linkedin.com/in/kevinandrey96/)).

@@ -1,0 +1,79 @@
+[
+  {"slug": "a-la-nanita-nana", "title": "A la nanita nana", "category": "nacional", "seconds": 21, "lyrics": null},
+  {"slug": "a-parar-para-avanzar", "title": "A parar para avanzar", "category": "nacional", "seconds": 9, "lyrics": null},
+  {"slug": "duque-chao", "title": "¡Duque chao!", "category": "nacional", "seconds": 152, "lyrics": null},
+  {"slug": "duque-ra-ra-ra", "title": "Duque ra ra ra", "category": "nacional", "seconds": 11, "lyrics": null},
+  {"slug": "el-pueblo", "title": "El pueblo", "category": "nacional", "seconds": 15, "lyrics": null},
+  {"slug": "esos-son", "title": "Esos son", "category": "nacional", "seconds": 6, "lyrics": null},
+  {"slug": "hay-que-ver", "title": "Hay que ver las cosas que pasan", "category": "nacional", "seconds": 11, "lyrics": [
+    "Hay que ver las cosas que pasan,",
+    "hay que ver las vueltas que dan,",
+    "con un pueblo que camina pa' adelante",
+    "y un gobierno que camina para atrás."
+  ]},
+  {"slug": "los-pollitos", "title": "Los pollitos", "category": "nacional", "seconds": 14, "lyrics": null},
+  {"slug": "ni-un-minuto-de-silencio", "title": "Ni un minuto de silencio", "category": "nacional", "seconds": 23, "lyrics": null},
+  {"slug": "no-queremos-privatizacion", "title": "No queremos privatización", "category": "nacional", "seconds": 19, "lyrics": null},
+  {"slug": "no-respetamos", "title": "No respetamos", "category": "nacional", "seconds": 18, "lyrics": null},
+  {"slug": "por-que-nos-matan", "title": "¿Por qué nos matan?", "category": "nacional", "seconds": 8, "lyrics": null},
+  {"slug": "que-lo-vengan-a-ver", "title": "Que lo vengan a ver", "category": "nacional", "seconds": 9, "lyrics": null},
+  {"slug": "queremos", "title": "Queremos", "category": "nacional", "seconds": 14, "lyrics": null},
+  {"slug": "represion", "title": "Represión", "category": "nacional", "seconds": 10, "lyrics": [
+    "¿Quiénes somos? ¡Estudiantes!",
+    "¿Qué exigimos? ¡Soluciones!",
+    "¿Qué nos dan? Represión, represión y la privatización."
+  ]},
+  {"slug": "senoras-senores", "title": "Señoras, señores", "category": "nacional", "seconds": 8, "lyrics": null},
+  {"slug": "todas-las-mananas", "title": "Todas las mañanas", "category": "nacional", "seconds": 20, "lyrics": null},
+  {"slug": "van-a-volver", "title": "Van a volver", "category": "nacional", "seconds": 16, "lyrics": null},
+
+  {"slug": "el-que-no-estudia", "title": "El que no estudia es Policía Nacional", "category": "estudiantes", "seconds": 7, "lyrics": null},
+  {"slug": "en-los-libros", "title": "En los libros", "category": "estudiantes", "seconds": 11, "lyrics": null},
+  {"slug": "es-la-voz-del-estudiante", "title": "Es la voz del estudiante", "category": "estudiantes", "seconds": 12, "lyrics": null},
+  {"slug": "la-batuta", "title": "La batuta", "category": "estudiantes", "seconds": 11, "lyrics": [
+    "A ver, a ver,",
+    "¿quién lleva la batuta?,",
+    "¿si los estudiantes",
+    "o el gobierno hijueputa, uta, uta?"
+  ]},
+  {"slug": "la-educacion-es-mia", "title": "La educación es mía", "category": "estudiantes", "seconds": 14, "lyrics": null},
+  {"slug": "la-educacion-es-un-derecho", "title": "La educación es un derecho", "category": "estudiantes", "seconds": 7, "lyrics": null},
+  {"slug": "pa-la-publica-no-hay-na", "title": "Pa' la pública no hay na'", "category": "estudiantes", "seconds": 13, "lyrics": null},
+  {"slug": "porropopo", "title": "Porropopo", "category": "estudiantes", "seconds": 7, "lyrics": [
+    "Porropopo, porropopo,",
+    "el que no salte quiere privatización."
+  ]},
+  {"slug": "presupuesto", "title": "Presupuesto", "category": "estudiantes", "seconds": 9, "lyrics": null},
+  {"slug": "somos-estudiantes", "title": "Somos estudiantes", "category": "estudiantes", "seconds": 48, "lyrics": null},
+  {"slug": "soy-estudiante", "title": "Soy estudiante", "category": "estudiantes", "seconds": 22, "lyrics": [
+    "¿Quién es usted?",
+    "¡Soy estudiante!",
+    "No lo escuché.",
+    "¡Soy estudiante!",
+    "Una vez más:",
+    "soy estudiante, soy; soy estudiante, soy; yo quiero estudiar",
+    "para cambiar la sociedad. ¡Vamo' a la lucha!"
+  ]},
+  {"slug": "taki-taki-por-la-educacion", "title": "Taki taki por la educación", "category": "estudiantes", "seconds": 108, "lyrics": null},
+  {"slug": "vamos-companeros", "title": "Vamos, compañeros", "category": "estudiantes", "seconds": 13, "lyrics": null},
+  {"slug": "viva-la-u", "title": "Viva la U", "category": "estudiantes", "seconds": 78, "lyrics": [
+    "¡Viva la U! ¡Viva!",
+    "¡Viva la U! ¡Viva!",
+    "Viva la universidad, no la dejes, no; no la dejes, no; no la dejes privatizar.",
+    "(En las universidades privadas se canta así:)",
+    "¡Viva la U! ¡Viva!",
+    "¡Viva la U! ¡Viva!",
+    "Viva la universidad, no la dejes, no; no la dejes, no; no la dejes comercializar."
+  ]},
+
+  {"slug": "a-las-mujeres-y-a-la-universidad", "title": "A las mujeres y a la universidad", "category": "feministas", "seconds": 20, "lyrics": null},
+  {"slug": "arroz-con-leche", "title": "Arroz con leche", "category": "feministas", "seconds": 13, "lyrics": null},
+  {"slug": "don-federico", "title": "Don Federico", "category": "feministas", "seconds": 13, "lyrics": null},
+  {"slug": "en-el-bosque-de-la-china", "title": "En el bosque de la China", "category": "feministas", "seconds": 9, "lyrics": null},
+  {"slug": "hoy-peleamos", "title": "Hoy peleamos", "category": "feministas", "seconds": 27, "lyrics": null},
+  {"slug": "libres-o-muertas", "title": "Libres o muertas", "category": "feministas", "seconds": 25, "lyrics": null},
+  {"slug": "mujeres-contra", "title": "Mujeres contra", "category": "feministas", "seconds": 10, "lyrics": null},
+  {"slug": "no-sea-indiferente", "title": "No sea indiferente", "category": "feministas", "seconds": 8, "lyrics": null},
+  {"slug": "quien-es-usted", "title": "¿Quién es usted?", "category": "feministas", "seconds": 23, "lyrics": null},
+  {"slug": "si-el-papa-fuera-mujer", "title": "Si el papa fuera mujer", "category": "feministas", "seconds": 22, "lyrics": null}
+]

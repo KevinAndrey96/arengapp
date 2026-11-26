@@ -1,6 +1,8 @@
 .DS_Store
 Thumbs.db
-*.log
-.env
 .idea/
 .vscode/
+
+/vendor/
+/.phpunit.cache/
+/.php-cs-fixer.cache

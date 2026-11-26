@@ -1,0 +1,70 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    name: PHP ${{ matrix.php }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        php: ["8.3", "8.4", "8.5"]
+    steps:
+      - uses: actions/checkout@v7
+      - uses: shivammathur/setup-php@2.40.0
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: mbstring, simplexml, xmlwriter
+          coverage: none
+      - run: composer validate --strict
+      - run: composer install --no-interaction --no-progress --prefer-dist
+      - name: Estilo (PER-CS)
+        if: matrix.php == '8.4'
+        run: vendor/bin/php-cs-fixer check --diff
+      - name: Análisis estático (PHPStan nivel max)
+        run: vendor/bin/phpstan analyse --no-progress --memory-limit=512M
+      - name: Pruebas
+        run: vendor/bin/phpunit
+      - name: Sintaxis del JavaScript
+        if: matrix.php == '8.4'
+        run: node --check public/assets/app.js
+
+  docker:
+    name: Imagen Docker
+    runs-on: ubuntu-latest
+    needs: quality
+    steps:
+      - uses: actions/checkout@v7
+      - run: docker build -t arengapp:ci .
+      - run: docker run -d --name arengapp -p 8080:8080 -e APP_URL=https://arengapp.example arengapp:ci
+      - name: Prueba de humo
+        shell: bash
+        run: |
+          set -euo pipefail
+          for i in $(seq 1 20); do curl -fsS localhost:8080/robots.txt >/dev/null && break; sleep 1; done
+          status() { curl -s -o /dev/null -w '%{http_code}' "localhost:8080$1"; }
+          test "$(status /)" = 200
+          test "$(status /arengas/viva-la-u)" = 200
+          test "$(status /arengas/no-existe)" = 404
+          test "$(status /privacidad.php)" = 301
+          curl -fsS localhost:8080/arengas/viva-la-u | grep -q '"@type":"MusicRecording"'
+          test "$(curl -fsS localhost:8080/sitemap.xml | grep -o '<loc>' | wc -l | tr -d ' ')" = 44
+          curl -fsS localhost:8080/robots.txt | grep -q 'Sitemap: https://arengapp.example/sitemap.xml'
+          curl -sI localhost:8080/ | grep -qi "^content-security-policy: default-src 'self'"
+          ! curl -sI localhost:8080/ | grep -qi '^x-powered-by'
+          curl -s -o /dev/null -w '%{http_code}' -H 'Range: bytes=0-99' localhost:8080/audio/viva-la-u.mp3 | grep -qx 206
+          test "$(docker inspect --format '{{.Config.User}}' arengapp)" = www-data
+      - if: failure()
+        run: docker logs arengapp

@@ -1,0 +1,25 @@
+name: Enviar la letra de una arenga
+description: Ayuda a completar el archivo con la letra de una arenga que conoces.
+title: "Letra: "
+labels: ["letra"]
+body:
+  - type: input
+    id: arenga
+    attributes:
+      label: Arenga
+      description: Nombre o enlace de la arenga en el archivo.
+      placeholder: https://.../arengas/duque-chao
+    validations:
+      required: true
+  - type: textarea
+    id: letra
+    attributes:
+      label: Letra
+      description: Una línea por cada verso, tal como se canta.
+    validations:
+      required: true
+  - type: input
+    id: contexto
+    attributes:
+      label: Dónde la escuchaste (opcional)
+      placeholder: Marcha del 21N en Bogotá, 2019
